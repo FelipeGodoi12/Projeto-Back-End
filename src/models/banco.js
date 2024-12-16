@@ -10,10 +10,10 @@ class BancoUsers {
         return users;
     }
 
-    createUser (login, senha) {
+    createUser (usuario, senha) {
         const newUsers = {
             id: id++,
-            login: login,
+            usuario: usuario,
             senha: senha,
             isAdmin: false
         }
@@ -23,10 +23,10 @@ class BancoUsers {
         return users;
     }
 
-    createUserAdmin (login, senha) {
+    createUserAdmin (usuario, senha) {
         const newUsers = {
             id: id++,
-            login: login,
+            usuario: usuario,
             senha: senha,
             isAdmin: true
         }
