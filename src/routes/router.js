@@ -8,18 +8,24 @@ router.get('/', (req, res) => {
 });
 
 // "Banco de dados improvisado (passar pra banco.js deppois)"
-const users = [
-    {login: "Felipe", senha: "admin", isAdmin: true},
-    {login: "Eduardo", senha: "admin", isAdmin: true},
-    {login: "usuario_teste", senha: "123", isAdmin: false}
-]
 
-// Rota para exibir a página de cadastro (opcional)
-router.get("/cadastro", (req, res) => {
-    res.send(users);
+const users = {
+    id: 1, login: "admin", senha: "admin123", isAdmin: true
+}
+
+// Rota para instalar usuários administradores
+router.get("/install", (req, res) => {
+    const newUsers = banco.createUser(users.login, users.senha);
+    return res.send(newUsers);
 });
 
-// Rota para cadastro de usuário (POST)
+// Rota para exibir a página de cadastro 
+router.get("/cadastro/users", (req, res) => {
+    const users = banco.getUsers();
+    return res.status(200).json(users);
+});
+
+// Rota para cadastro de usuário 
 router.post("/cadastro", (req, res) => {
     const { login, senha, isAdmin = false } = req.body;
 
@@ -33,11 +39,37 @@ router.post("/cadastro", (req, res) => {
 
     console.log(users)
 
-    return res.status(201).json({ message: "Bem vindo, "+users.login, usuario: novoUsuario });
+    return res.status(201).json({ message: "Bem vindo, "+ login, usuario: novoUsuario });
 });
 
-// Rota para que administradores possam criar outros administradores
+// Rota para criar usuário administrador
+router.post('/cadastro/admin', (req, res) => {
 
-// Rota para administradores excluirem um usuário
+    const {login, senha} = req.body;
+    const novoUsuario = banco.createUserAdmin(login, senha);
+
+    return res.status(201).json(novoUsuario);
+
+});
+
+// Rota para criar usuário não administrador
+router.post('/cadastro/user', (req, res) => {
+
+    const {login, senha} = req.body;
+    const novoUsuario = banco.createUser(login, senha);
+
+    return res.status(201).json(novoUsuario);
+
+});
+
+// Rota para administradores excluirem um usuário não administrador
+router.delete('/cadastro/deletar/:id', (req, res) => {
+
+    const {id} = req.params;
+    banco.deleteUser(id);
+    
+    return res.status(200).json(`Usuário ID ${id} excluído com sucesso`);
+})
+
 
 module.exports = router;

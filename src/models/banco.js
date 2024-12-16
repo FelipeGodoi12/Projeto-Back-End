@@ -1,10 +1,54 @@
 //const express = require('express');
 
 // "Banco de dados improvisado"
-const users = [
-    {login: "Felipe", senha: "admin", isAdmin: true},
-    {login: "Eduardo", senha: "admin", isAdmin: true},
-    {login: "usuario_teste", senha: "123", isAdmin: false}
-]
+let id = 1;
+let users = [];
 
-module.exports = users
+class BancoUsers {
+
+    getUsers() {
+        return users;
+    }
+
+    createUser (login, senha) {
+        const newUsers = {
+            id: id++,
+            login: login,
+            senha: senha,
+            isAdmin: false
+        }
+
+        users.push(newUsers);
+
+        return users;
+    }
+
+    createUserAdmin (login, senha) {
+        const newUsers = {
+            id: id++,
+            login: login,
+            senha: senha,
+            isAdmin: true
+        }
+
+        users.push(newUsers);
+
+        return users;
+    }
+
+    deleteUser (id) {
+
+        for(let i = 0; i < users.length; i++) {
+            if(users[i].id == id && users[i].isAdmin === false) {
+                users.splice(i, 1);
+            } else {
+                return console.log('Usuário é Admin');
+            }
+        }
+
+        return users;
+    }
+}
+
+
+module.exports = new BancoUsers;
