@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
         if(req.admin === true) {
             return next();
         } else {
-            return res.status(400).json({msg: "Usuário não é ADMIN"});
+            return res.status(400).json({msg: "Erro! Usuário a ser deletado é ADMIN"});
         }
 
     } catch (error) {

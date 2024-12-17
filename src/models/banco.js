@@ -43,7 +43,7 @@ class BancoUsers {
         for(let i = 0; i < users.length; i++) {
             if(users[i].id == id) {
                 users[i].usuario = usuario;
-                return `Usuário atualizado com sucesso`;
+                return `Usuário ID ${id} atualizado com sucesso`;
             } 
         }
     }
@@ -53,10 +53,10 @@ class BancoUsers {
         for(let i = 1; i < users.length; i++) {
             if(users[i].id == id && users[i].isAdmin == false) {
                 users.splice(i, 1);
-                return `Usuário deletado com sucesso`;
+                return `Usuário ID ${id} deletado com sucesso`;
             } 
         }
-        return `Usuário é ADMIN`;
+        return `Erro! Usuário a ser deletado é ADMIN`;
     }
 
     // Verifica se o usuário existe
