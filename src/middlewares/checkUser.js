@@ -5,7 +5,7 @@ module.exports = {
         if(body.usuario == " " || body.usuario == "") {
             return res.status(400).json("Usuário é obrigatório");
 
-        } if(body.senha == "" || body.senha == " ") {
+        } if(body.senha == " " || body.senha == "") {
             return res.status(400).json("Senha é obrigatória");
         }
         next();

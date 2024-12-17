@@ -16,6 +16,12 @@ class adminUserController {
     createAdmin = (req, res) => {
         const {usuario, senha} = req.body;
 
+        const usuarioExiste = bd.checkIfUserExists(usuario);
+        
+        if(usuarioExiste) {
+            return res.status(400).json({ msg: "Usuário já existe"});
+        }
+
         const user = bd.createUserAdmin(usuario, senha);
 
         return res.status(200).json(user);

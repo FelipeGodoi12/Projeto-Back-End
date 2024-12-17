@@ -17,13 +17,13 @@ module.exports = (req, res, next) => {
     try {
         const secret = process.env.SECRET;
         const decoded = jwt.verify(token, secret);
-
+        
         req.admin = decoded.isAdmin; 
-
+        
         if(req.admin === true) {
             return next();
         } else {
-            return res.status(400).json({msg: "Erro! Usuário a ser deletado é ADMIN"});
+            return res.status(400).json({msg: "Usuário logado não é ADMIN"});
         }
 
     } catch (error) {

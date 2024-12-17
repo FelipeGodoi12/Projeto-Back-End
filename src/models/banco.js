@@ -1,6 +1,3 @@
-//const express = require('express');
-
-// "Banco de dados improvisado"
 let id = 1;
 let users = [];
 

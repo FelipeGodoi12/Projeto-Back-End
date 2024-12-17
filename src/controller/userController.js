@@ -29,6 +29,7 @@ class userController {
         const usuarioAtualizado = bd.updateUser(id, usuario);
 
         return res.status(200).json(usuarioAtualizado);
+
     }
 
     // Rota para excluir usuários não administradores
