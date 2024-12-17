@@ -10,8 +10,9 @@ class BancoUsers {
         return users;
     }
 
+    // Criar usuários não administradores
     createUser (usuario, senha) {
-        const newUsers = {
+        let newUsers = {
             id: id++,
             usuario: usuario,
             senha: senha,
@@ -23,8 +24,9 @@ class BancoUsers {
         return users;
     }
 
+    // Criar usuários administradores
     createUserAdmin (usuario, senha) {
-        const newUsers = {
+        let newUsers = {
             id: id++,
             usuario: usuario,
             senha: senha,
@@ -36,17 +38,54 @@ class BancoUsers {
         return users;
     }
 
-    deleteUser (id) {
-
+    // Atualizar usuários
+    updateUser(id, usuario) {
         for(let i = 0; i < users.length; i++) {
-            if(users[i].id == id && users[i].isAdmin === false) {
-                users.splice(i, 1);
-            } else {
-                return console.log('Usuário é Admin');
-            }
+            if(users[i].id == id) {
+                users[i].usuario = usuario;
+                return `Usuário atualizado com sucesso`;
+            } 
         }
+    }
 
-        return users;
+    // Deletar usuários não admins
+    deleteUser(id) {
+        for(let i = 1; i < users.length; i++) {
+            if(users[i].id == id && users[i].isAdmin == false) {
+                users.splice(i, 1);
+                return `Usuário deletado com sucesso`;
+            } 
+        }
+        return `Usuário é ADMIN`;
+    }
+
+    // Verifica se o usuário existe
+    checkIfUserExists(usuario) {
+        for(let i = 0; i < users.length; i++) {
+            if(users[i].usuario == usuario) {
+                return true;
+            }
+        } 
+        return false;
+    }
+
+    // Verifica se a senha existe
+    checkIfPasswordExists(senha) {
+        for(let i = 0; i < users.length; i++) {
+            if(users[i].senha == senha) {
+                return true;
+            }
+        } 
+        return false;
+    }
+
+    checkAdmin(usuario) {
+        for(let i = 0; i < users.length; i++) {
+            if(users[i].usuario == usuario && users[i].isAdmin == true) {
+                return true;
+            }
+        } 
+        return false;
     }
 }
 

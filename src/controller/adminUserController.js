@@ -12,7 +12,8 @@ class adminUserController {
         return res.status(201).json(user);
     }
 
-    login = (req, res) => {
+
+    createAdmin = (req, res) => {
         const {usuario, senha} = req.body;
 
         const user = bd.createUserAdmin(usuario, senha);
