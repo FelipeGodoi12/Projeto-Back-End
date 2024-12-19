@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "usuario": "admin",
+    "senha": "admin123",
+    "isAdmin": true
+  },
+  {
+    "id": 2,
+    "usuario": "Joaozinho13",
+    "senha": "minecraft",
+    "isAdmin": false
+  }
+]
