@@ -47,13 +47,13 @@ class orderController {
         // Rota para excluir pedidos
         deleteOrder = (req, res) => {
             const {id} = req.params;
-            const pedidoDeletado = dbOrder.deleteOrder(id);
-            
             const pedidoExiste = dbOrder.checkIfOrderExistsById(id);
-
+            
             if(!pedidoExiste) {
                 return res.status(404).json({msg: "Pedido não existe"});
             }
+
+            const pedidoDeletado = dbOrder.deleteOrder(id);
 
             return res.status(200).json(pedidoDeletado);
         }

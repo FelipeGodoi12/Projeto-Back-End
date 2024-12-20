@@ -1,4 +1,4 @@
-const bd = require('../models/banco.js');
+const bd = require('../models/usuario.js');
 require('dotenv').config();
 
 class adminUserController {

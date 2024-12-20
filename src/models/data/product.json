@@ -1,3 +1,26 @@
 [
-  
+  {
+    "id": 1,
+    "nome": "Rele falta de fase 440",
+    "preco": 235,
+    "estoque": 10
+  },
+  {
+    "id": 2,
+    "nome": "Tomada",
+    "preco": 235,
+    "estoque": 10
+  },
+  {
+    "id": 3,
+    "nome": "Tomada azul",
+    "preco": 235,
+    "estoque": 10
+  },
+  {
+    "id": 4,
+    "nome": "Tomada verde",
+    "preco": 235,
+    "estoque": 10
+  }
 ]
