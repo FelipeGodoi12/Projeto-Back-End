@@ -4,9 +4,12 @@ let users = [];
 
 load()
 class BancoUsers {
-    incrementaId() {
+   
+        
+    incrementa_id() {
         let maiorId = 0; 
     
+
         for (let i = 0; i < users.length; i++) {
             if (users[i].id > maiorId) {
                 maiorId = users[i].id;
@@ -18,19 +21,19 @@ class BancoUsers {
     
 
     getUsers() {
+        console.log(users.length);
         return users;
     }
     
     // Criar usuários não administradores
     createUser (usuario, senha) {
-
         let newUsers = {
-            id: this.incrementaId(),
+            id: this.incrementa_id(),
             usuario: usuario,
             senha: senha,
             isAdmin: false
         }
-  
+        
         users.push(newUsers);
         save()
         return users;
@@ -39,7 +42,7 @@ class BancoUsers {
     // Criar usuários administradores
     createUserAdmin (usuario, senha) {
         let newUsers = {
-            id: this.incrementaId(),
+            id: this.incrementa_id(),
             usuario: usuario,
             senha: senha,
             isAdmin: true
@@ -101,6 +104,23 @@ class BancoUsers {
         } 
         return false;
     }
+}
+
+//verifica se ja existe usuário com este id
+function checkID(id){
+    if(users.length == 0) {
+        return true;
+    } else {
+        for(let i=0; i< users.length; i++) {
+            if(users[i].id == id) {
+                return false;
+            } 
+            if(users[i].id != id && i == users.length){
+                return true
+            }
+        }
+    }
+    /
 }
 
 function save() {

@@ -19,7 +19,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.9"
   },
   "github": {
     "link": "https://github.com/FelipeGodoi12/Projeto-Back-End"

@@ -3,11 +3,11 @@ const express = require('express');
 const adminUserController = require('./controller/adminUserController.js');
 const userController = require('./controller/userController.js');
 const loginController = require('./controller/loginController.js');
+
 const productController = require('./controller/productController.js');
 const orderController = require('./controller/orderController.js');
 
-const authAdmin = require('./middlewares/authAdmin.js');
-const authToken = require('./middlewares/authToken.js');
+const authHeader = require('./middlewares/auth.js');
 const checkUser = require('./middlewares/checkUser.js');
 
 const router = express.Router();
@@ -38,5 +38,15 @@ router.get('/orders/get', orderController.getOrders);   // Rota para retornar to
 router.post('/orders/create', authToken, orderController.createOrder);   // Rota para criar pedidos
 router.put('/orders/update/:id', authToken, orderController.updateOrder);   // Rota para atualizar pedidos
 router.delete('/orders/delete/:id', authToken, orderController.deleteOrder);   // Rota para deletar pedidos
+
+router.get('/install', adminUserController.install);
+router.post('/login', checkUser.checkUser, loginController.login);
+
+// Sistema CRUD
+router.get('/get', userController.getUsers);
+router.post('/create', authHeader, checkUser.checkUser, userController.createUser);     // Rota para retornar todos os usuários
+router.post('/createAdmin', authHeader, checkUser.checkUser, adminUserController.createAdmin);  // Rota para admin criar outros admins
+router.put('/update/:id', authHeader, checkUser.checkUser, userController.updateUser);      // Rota para atualizar usuários 
+router.delete('/delete/:id', authHeader, userController.deleteUser);   // Rota para admin excluir usuários não admins
 
 module.exports = router;
