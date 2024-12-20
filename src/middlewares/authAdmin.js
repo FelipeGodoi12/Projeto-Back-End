@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
         
         req.admin = decoded.isAdmin; 
         
-        if(req.admin === true) {
+        if(req.admin === true) {    // Condição para descriptografar e verificar se o token do usuário é admin
             return next();
         } else {
             return res.status(400).json({msg: "Usuário logado não é ADMIN"});

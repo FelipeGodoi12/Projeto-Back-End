@@ -13,6 +13,7 @@ class loginController {
         const usuarioExistente = bd.checkIfUserExists(usuario);
         const senhaExistente = bd.checkIfPasswordExists(senha);
         
+        // Checando se usuário e senha estão cadastrados no sistema
         if(!usuarioExistente) {
             return res.status(400).json({ msg: "Usuário incorreto!" });
         }
@@ -23,6 +24,7 @@ class loginController {
 
         const isAdmin = bd.checkAdmin(usuario);
 
+        // Criando um token para o usuário devidamente logado
         const token = jwt.sign({
             usuario: usuario,
             senha: senha,

@@ -1,5 +1,5 @@
 module.exports = {
-    checkUser(req, res, next) {
+    checkUser(req, res, next) {     // Middleware para impedir de entrada de dados vazios no login
         const {body} = req;
 
         if(body.usuario == " " || body.usuario == "") {

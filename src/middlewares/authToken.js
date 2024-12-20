@@ -16,9 +16,9 @@ module.exports = (req, res, next) => {
 
     try {
         const secret = process.env.SECRET;
-        const decoded = jwt.verify(token, secret);
+        const decoded = jwt.verify(token, secret); 
         
-        if(decoded) {
+        if(decoded) {   
             next();
         } 
 

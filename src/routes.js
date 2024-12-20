@@ -10,6 +10,8 @@ const orderController = require('./controller/orderController.js');
 const authAdmin = require('./middlewares/authAdmin.js');
 const authToken = require('./middlewares/authToken.js');
 const checkUser = require('./middlewares/checkUser.js');
+const checkProduct = require('./middlewares/checkProduct.js');
+const checkOrder = require('./middlewares/checkOrder.js');
 
 const router = express.Router();
 
@@ -30,14 +32,14 @@ router.delete('/users/delete/:id', authAdmin, userController.deleteUser);   // R
 
 // Sistema CRUD - Produtos
 router.get('/products/get', productController.getProducts);     // Rota para retornar todos os produtos
-router.post('/products/create', authToken, productController.createProduct);     // Rota para criar novos produtos
-router.put('/products/update/:id', authToken, productController.updateProduct);     // Rota para atualizar produtos 
+router.post('/products/create', authToken, checkProduct.checkProduct, productController.createProduct);     // Rota para criar novos produtos
+router.put('/products/update/:id', authToken, checkProduct.checkProduct, productController.updateProduct);     // Rota para atualizar produtos 
 router.delete('/products/delete/:id', authToken, productController.deleteProduct);     // Rota para deletar produtos
 
 // Sistema CRUD - Pedidos
 router.get('/orders/get', orderController.getOrders);   // Rota para retornar todos os pedidos
-router.post('/orders/create', authToken, orderController.createOrder);   // Rota para criar pedidos
-router.put('/orders/update/:id', authToken, orderController.updateOrder);   // Rota para atualizar pedidos
+router.post('/orders/create', authToken, checkOrder.checkOrder, orderController.createOrder);   // Rota para criar pedidos
+router.put('/orders/update/:id', authToken, checkOrder.checkOrder, orderController.updateOrder);   // Rota para atualizar pedidos
 router.delete('/orders/delete/:id', authToken, orderController.deleteOrder);   // Rota para deletar pedidos
 
 module.exports = router;
