@@ -6,18 +6,22 @@ load()
 class BancoProduct {
 
     incrementaId() {
-        for(let i = 0; i <= products.length; i++) {
-            if(i == products.length) {
-                return ++i;
+        let maiorId = 0; 
+    
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].id > maiorId) {
+                maiorId = products[i].id;
             }
         }
+ 
+        return maiorId + 1;
     }
 
     getProducts() {
         return products;
     }
     
-    // Criar usuários não administradores
+    // Criar produtos
     createProduct (nome, preco, estoque) {
 
         let newProducts = {
@@ -32,7 +36,7 @@ class BancoProduct {
         return products;
     }
 
-    // Atualizar usuários
+    // Atualizar produtos
     updateProduct(id, preco, estoque) {
         for(let i = 0; i < products.length; i++) {
             if(products[i].id == id) {
@@ -44,7 +48,7 @@ class BancoProduct {
         }
     }
 
-    // Deletar usuários não admins
+    // Deletar produtos
     deleteProduct(id) {
         for(let i = 0; i < products.length; i++) {
             if(products[i].id == id) {
@@ -55,7 +59,7 @@ class BancoProduct {
         }
     }
 
-    // Verifica se o usuário existe
+    // Verifica se o produto existe pelo nome
     checkIfProductExists(nome) {
         for(let i = 0; i < products.length; i++) {
             if(products[i].nome == nome) {
@@ -65,6 +69,7 @@ class BancoProduct {
         return false;
     }
 
+    // Verifica se o produto existe pelo ID
     checkIfProductExistsById(id) {
         for(let i = 0; i < products.length; i++) {
             if(products[i].id == id) {
@@ -72,6 +77,15 @@ class BancoProduct {
             }
         } 
         return false;
+    }
+
+    // Verifica a quantidade em estoque
+    checkStock(nome) {
+        for(let i = 0; i < products.length; i++) {
+            if(products[i].nome == nome) {
+                return products[i].estoque;
+            }
+        } 
     }
 }
 

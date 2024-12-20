@@ -1,7 +1,8 @@
 {
-  "name": "projetos",
+  "name": "projeto-back-end",
   "version": "1.0.0",
   "main": "index.js",
+  "alunos": "Eduardo Affonso Kasprovicz e Felipe Godoi",
   "scripts": {
     "start": "nodemon src/server.js",
     "swagger-autogen": "node src/swagger.js"
@@ -19,5 +20,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
+  },
+  "github": {
+    "link": "https://github.com/FelipeGodoi12/Projeto-Back-End"
   }
 }

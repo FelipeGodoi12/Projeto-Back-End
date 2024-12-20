@@ -4,14 +4,18 @@ let users = [];
 
 load()
 class BancoUsers {
-
     incrementaId() {
-        for(let i = 0; i <= users.length; i++) {
-            if(i == users.length) {
-                return ++i;
+        let maiorId = 0; 
+    
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id > maiorId) {
+                maiorId = users[i].id;
             }
         }
+ 
+        return maiorId + 1;
     }
+    
 
     getUsers() {
         return users;
@@ -59,7 +63,7 @@ class BancoUsers {
 
     // Deletar usuários não admins
     deleteUser(id) {
-        for(let i = 1; i < users.length; i++) {
+        for(let i = 0; i < users.length; i++) {
             if(users[i].id == id && users[i].isAdmin == false) {
                 users.splice(i, 1);
                 save();

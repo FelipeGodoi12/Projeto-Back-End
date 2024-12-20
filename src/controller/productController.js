@@ -2,7 +2,7 @@ const bdProduct = require('../models/produto.js');
 
 class productController {
 
-    // Rota para exibir a página de produtos 
+        // Rota para exibir a página de produtos 
         getProducts = (req, res) => {
             const products = bdProduct.getProducts();
             
@@ -41,7 +41,13 @@ class productController {
         deleteProduct = (req, res) => {
             const {id} = req.params;
             const produtoDeletado = bdProduct.deleteProduct(id);
-    
+            
+            const produtoExiste = bdProduct.checkIfProductExistsById(id);
+            
+            if(!produtoExiste) {
+                return res.status(404).json({ msg: `Produto ID ${id} não existe`});
+            }
+
             return res.status(200).json(produtoDeletado);
         }
 }

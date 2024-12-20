@@ -18,7 +18,7 @@ class adminUserController {
 
         const usuarioExiste = bd.checkIfUserExists(usuario);
         
-        if(usuarioExiste) {
+        if(usuarioExiste) {     // Verifica se o usuario existe no banco pelo nome
             return res.status(400).json({ msg: "Usuário já existe"});
         }
 
@@ -27,6 +27,5 @@ class adminUserController {
         return res.status(200).json(user);
     };
 }
-
 
 module.exports = new adminUserController;
