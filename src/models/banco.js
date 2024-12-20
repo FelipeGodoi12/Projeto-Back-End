@@ -4,8 +4,8 @@ let users = [];
 
 load()
 class BancoUsers {
-    
-    incrementa_id() {
+
+    incrementaId() {
         for(let i = 0; i <= users.length; i++) {
             if(i == users.length) {
                 return ++i;
@@ -14,19 +14,19 @@ class BancoUsers {
     }
 
     getUsers() {
-        console.log(users.length);
         return users;
     }
     
     // Criar usuários não administradores
     createUser (usuario, senha) {
+
         let newUsers = {
-            id: this.incrementa_id(),
+            id: this.incrementaId(),
             usuario: usuario,
             senha: senha,
             isAdmin: false
         }
-        
+  
         users.push(newUsers);
         save()
         return users;
@@ -35,7 +35,7 @@ class BancoUsers {
     // Criar usuários administradores
     createUserAdmin (usuario, senha) {
         let newUsers = {
-            id: this.incrementa_id(),
+            id: this.incrementaId(),
             usuario: usuario,
             senha: senha,
             isAdmin: true
